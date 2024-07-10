@@ -5,7 +5,12 @@ const listaFinal = document.querySelector('.list-task')
 let minhaLista = []
 
 function pegarDados() {
-    minhaLista.push(input.value)
+    minhaLista.push({
+        tarefa: input.value,
+        concluida: false
+    })
+    
+    input.value = ''
 
     mostrarTarefas()
 }
@@ -14,21 +19,28 @@ function pegarDados() {
 function mostrarTarefas() {
     let novaLi = ''
 
-    minhaLista.forEach((tarefa, index) => {
+    minhaLista.forEach((item, index) => {
         novaLi = novaLi + `
         
-         <li class="task">
-                <img src="" alt="check-na-tarefa">
+         <li class="task ${item.concluida && "done"}" >
+                <img src="./img/checked.png" alt="check-na-tarefa" onclick="concluirTarefa(${index})">
 
-                <p>${tarefa}</p>
+                <p>${item.tarefa}</p>
 
-                <img src="" alt="tarefa-para-o-lixo" onclick="deletarItem(${index})">
+                <img src="./img/trash.png" alt="tarefa-para-o-lixo" onclick="deletarItem(${index})">
             </li>
             `
         
     });
 
     listaFinal.innerHTML = novaLi 
+}
+
+function concluirTarefa(index) {
+    minhaLista[index].concluida = !minhaLista[index].concluida
+
+    mostrarTarefas()
+
 }
 
 function deletarItem(index) {
