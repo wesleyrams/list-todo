@@ -14,7 +14,7 @@ function pegarDados() {
 function mostrarTarefas() {
     let novaLi = ''
 
-    minhaLista.forEach((tarefa) => {
+    minhaLista.forEach((tarefa, index) => {
         novaLi = novaLi + `
         
          <li class="task">
@@ -22,14 +22,19 @@ function mostrarTarefas() {
 
                 <p>${tarefa}</p>
 
-                <img src="" alt="tarefa-para-o-lixo">
+                <img src="" alt="tarefa-para-o-lixo" onclick="deletarItem(${index})">
             </li>
             `
         
     });
 
     listaFinal.innerHTML = novaLi 
-    console.log(listaFinal)
+}
+
+function deletarItem(index) {
+    minhaLista.splice(index, 1)
+    mostrarTarefas()
+
 }
 
 button.addEventListener('click', pegarDados)
