@@ -4,6 +4,7 @@ const listaFinal = document.querySelector('.list-task')
 
 let minhaLista = []
 
+//Pega todos inputs digitados de minhaLista
 function pegarDados() {
     minhaLista.push({
         tarefa: input.value,
@@ -15,10 +16,11 @@ function pegarDados() {
     mostrarTarefas()
 }
 
-
+// Ao adicionar tarefa no input, essa função mostra todas as tarefas adicionadas
 function mostrarTarefas() {
     let novaLi = ''
 
+    // Aqui é aonde pega toda tarefa de "minhaLista e add no novaLi"
     minhaLista.forEach((item, index) => {
         novaLi = novaLi + `
         
@@ -36,6 +38,7 @@ function mostrarTarefas() {
     listaFinal.innerHTML = novaLi 
 }
 
+// Função para dizer que a tarefa está concluida ao clicar na imagem
 function concluirTarefa(index) {
     minhaLista[index].concluida = !minhaLista[index].concluida
 
@@ -43,11 +46,13 @@ function concluirTarefa(index) {
 
 }
 
+// Aqui deleto as tarefas
 function deletarItem(index) {
     minhaLista.splice(index, 1)
     mostrarTarefas()
 
 }
 
+// Pego os dados ao clicar no botão
 button.addEventListener('click', pegarDados)
 
